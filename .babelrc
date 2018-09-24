@@ -1,0 +1,24 @@
+{
+  "presets": [
+    "next/babel",
+  ],
+   "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "src": "./src",
+      },
+    }],
+     "transform-react-pug",
+  ],
+   "env": {
+    "test": {
+      "presets": [
+        ["next/babel", {
+          "preset-env": {
+            "modules": "commonjs"
+          }
+        }]
+      ],
+    },
+  },
+}

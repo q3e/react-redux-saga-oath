@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { Container } from 'reactstrap'
+import _isEmpty from 'lodash'
 
 import withAuth from 'src/lib/authHOC'
 
@@ -16,6 +17,8 @@ class Posts extends React.Component {
   render = () => pug`
     Container
       h1 Wall Posts
+      if _isEmpty(this.props.posts)
+        h3 You have no posts
       each item, index in this.props.posts
         h1(key=index)= index
   `

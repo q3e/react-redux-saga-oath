@@ -8,7 +8,13 @@
         "src": "./src",
       },
     }],
+
      "transform-react-pug",
+
+     ["transform-jsx-css-modules", {
+      "pathToStyles": "\\.\\/assets\\/styles\\.scss$",
+    }],
+
   ],
    "env": {
     "test": {

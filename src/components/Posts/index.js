@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types'
 import { Container } from 'reactstrap'
 
-import { PostsActionCreator as posts } from 'src/redux/Login/actions'
+import withAuth from 'src/lib/authHOC'
+
+import { postsActionCreator as posts } from 'src/redux/Posts/actions'
 
 class Posts extends React.Component {
   componentWillMount = () => {
     if(!(typeof window === 'undefined')){
-      const access_token = localStorage.getItem('access_token')
-      this.props.dispatch({ type: 'FETCH_POSTS', access_token })
+      const accessToken = localStorage.getItem('access_token')
+      this.props.dispatch(posts(accessToken))
     }
-    console.log(this.props)
   }
 
   render = () => pug`
@@ -25,4 +26,4 @@ Posts.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-export default Posts
+export default withAuth(Posts)

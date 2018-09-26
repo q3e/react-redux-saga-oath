@@ -1,6 +1,6 @@
 const initialState = {
   isLoggingIn: false,
-  submittedData: false,
+  userId: '',
 }
 
 export default (state = initialState, action) => {
@@ -9,21 +9,19 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: true,
-        submittedData: false,
       }
 
     case 'LOGIN_FAILED':
       return {
         ...state,
         isLoggingIn: false,
-        submittedData: true,
       }
 
     case 'LOGIN_SUCCEEDED':
       return {
         ...state,
         isLoggingIn: false,
-        submittedData: true,
+        userId: action.session.user_id
       }
 
     default:

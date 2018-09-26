@@ -6,8 +6,9 @@ import loginAPI from './api'
 // main worker saga - fired on LOGIN_REQUESTED action
 function* login(action) {
    try {
-      const user = yield call(loginAPI, _pick(action, ['email', 'password']))
-      yield put({type: "LOGIN_SUCCEEDED", user: user})
+      const session = yield call(loginAPI, _pick(action, ['email', 'password']))
+      console.log('session', session)
+      yield put({type: "LOGIN_SUCCEEDED", session})
    } catch (e) {
       yield put({type: "LOGIN_FAILED", message: e.message})
    }

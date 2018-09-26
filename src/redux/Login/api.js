@@ -12,7 +12,8 @@ const login = credentials => axios({
   .then(function ({ data }) {
     localStorage.setItem('access_token', data.access_token)
     localStorage.setItem('token_expiry', moment.now() + data.expires_in)
+    return data
   })
-  .catch(e => Promise.reject(e));
+  .catch(e => Promise.reject(e))
 
 export default login

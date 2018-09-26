@@ -8,15 +8,16 @@ function* login(action) {
    try {
       const session = yield call(loginAPI, _pick(action, ['email', 'password']))
       console.log('session', session)
-      yield put({type: "LOGIN_SUCCEEDED", session})
+      yield put({type: 'LOGIN_SUCCEEDED', session})
+      window.location.href = '/wall'
    } catch (e) {
-      yield put({type: "LOGIN_FAILED", message: e.message})
+      yield put({type: 'LOGIN_FAILED', message: e.message})
    }
 }
 
 // 'takeLatest' does not allow concurrent login requests
 function* loginSaga() {
-  yield takeLatest("LOGIN_REQUESTED", login)
+  yield takeLatest('LOGIN_REQUESTED', login)
 }
 
 export default loginSaga

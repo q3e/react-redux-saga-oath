@@ -7,7 +7,6 @@ import loginAPI from './api'
 function* login(action) {
    try {
       const session = yield call(loginAPI, _pick(action, ['email', 'password']))
-      console.log('session', session)
       yield put({type: 'LOGIN_SUCCEEDED', session})
       window.location.href = '/wall'
    } catch (e) {

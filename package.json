@@ -1,5 +1,5 @@
 {
-  "name": "derrik_asses",
+  "name": "assesment",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,17 +12,30 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-eslint": "^9.0.0",
+    "@babel/core": "^7.1.0",
+    "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.18.0",
+    "babel-core": "7.0.0-bridge.0",
     "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-jsx-css-modules": "^1.0.0",
     "babel-plugin-transform-react-pug": "^6.0.1",
+    "bootstrap": "^4.1.3",
     "install": "^0.12.1",
+    "lodash": "^4.17.11",
     "next": "^7.0.0",
+    "next-redux-saga": "^3.0.0",
+    "next-redux-wrapper": "^2.0.0",
+    "node-sass": "^4.9.3",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "reactstrap": "^6.4.0",
+    "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.0",
-    "babel-core": "^6.26.3",
+    "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
@@ -42,11 +55,7 @@
       "<rootDir>/node_modules/"
     ],
     "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
-      "^(?!.*\\.(js|jsx|scss|json)$)": "<rootDir>/config/jest/mockFile.js"
-    },
-    "moduleNameMapper": {
-      "^.+\\.scss$": "<rootDir>/config/jest/mockStyle.js"
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest"
     }
   },
   "eslintConfig": {

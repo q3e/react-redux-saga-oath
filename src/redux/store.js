@@ -17,7 +17,7 @@ const composeEnhancers = !isServer && process.env.NODE_ENV === 'development'
   : compose
 
 const rootReducer = combineReducers({
-  login: redux.reducers.login,
+  ...redux.reducers,
   form: formReducer,
 })
 const sagaMiddleware = createSagaMiddleware()

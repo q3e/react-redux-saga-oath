@@ -1,5 +1,4 @@
 import { Container, Button } from 'reactstrap'
-import Link from 'next/link'
 
 import LoginForm from 'src/components/Login'
 

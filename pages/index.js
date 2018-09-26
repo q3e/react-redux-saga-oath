@@ -7,7 +7,7 @@ const HomePage = () => pug`
   Container.text-center
     p Please log in
 
-    Link(href='/login')
+    Link(href="/login")
       Button Login with Email
 `
 

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Container } from 'reactstrap'
 
 import { PostsActionCreator as posts } from 'src/redux/Login/actions'
@@ -17,6 +18,11 @@ class Posts extends React.Component {
       each item, index in this.props.posts
         h1(key=index)= index
   `
+}
+
+Posts.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default Posts

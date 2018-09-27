@@ -11,6 +11,7 @@ const login = credentials => axios({
   }})
   .then(function ({ data }) {
     localStorage.setItem('access_token', data.access_token)
+    localStorage.setItem('user_id', data.user_id)
     localStorage.setItem('token_expiry', moment.now() + data.expires_in)
     return data
   })

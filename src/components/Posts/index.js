@@ -5,35 +5,31 @@ import _isEmpty from 'lodash'
 import WallPostBox from 'src/components/TextBox'
 import WallPost from 'src/containers/WallPost'
 
-import withAuth from 'src/lib/authHOC'
+import { savePostActionCreator as savePost } from 'src/redux/Posts/actions'
 
-import {
-  postsActionCreator as posts,
-  savePostActionCreator as savePost,
-} from 'src/redux/Posts/actions'
 
-class Posts extends React.Component {
-  componentWillMount = () => {
-    this.props.dispatch(posts())
-  }
+const Posts = props =>pug`
+  Container
+    h1 Wall Posts
 
-  render = () => pug`
-    Container
-      h1 Wall Posts
-      if _isEmpty(this.props.posts)
-        h3 You have no posts
+    if props.posts.length>0
+      if props.posts.isFetching
+        h3 Loading posts...
 
-      each item, index in this.props.posts
-        WallPost(key=index wallPost=item)
-
-      .text-center
-        WallPostBox(action=savePost)
-  `
-}
+      each item, index in props.posts
+        .text-center(key=index)
+          WallPost(wallPost=item)
+      WallPostBox(
+        action=savePost
+        btnText="Add WallPost"
+        label="add new comment"
+        form="PostForm"
+      )
+`
 
 Posts.propTypes = {
   dispatch: PropTypes.func.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-export default withAuth(Posts)
+export default Posts

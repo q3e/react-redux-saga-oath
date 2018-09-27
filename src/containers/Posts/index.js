@@ -1,13 +1,38 @@
+import moment from 'moment'
 import { connect } from 'react-redux'
 
 import Posts from 'src/components/Posts'
 
-const PostsContainer = props => pug`
-  Posts(...props)
-`
+import { postsActionCreator as posts } from 'src/redux/Posts/actions'
+
+class PostsContainer extends React.Component {
+  state = {
+    isTokenExpired: true,
+  }
+
+  componentWillMount = () => {
+    this.props.dispatch(posts())
+    // make route private
+    if (typeof localStorage !== 'undefined'){
+      const tokenExpiry = Number(localStorage.getItem('token_expiry'))
+      if(tokenExpiry > moment.now()) {
+        this.setState({ isTokenExpired: false })
+      }
+    }
+  }
+
+  render = () => pug`
+    if this.state.isTokenExpired
+      h1 Loggin in...If it takes too long, login again!
+
+    else
+      Posts(...this.props)
+  `
+}
 
 const mapStateToProps = state => ({
-  posts: state.posts.posts
+  posts: state.posts.posts,
+  isFetching: state.posts.isFetching,
 })
 
 export default connect(mapStateToProps)(PostsContainer)

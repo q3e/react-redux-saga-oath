@@ -4,7 +4,7 @@ import loginReducer from './Login/reducers'
 import loginSaga from './Login/sagas'
 
 import postsReducer from './Posts/reducers'
-import { postsSaga, savePostSaga } from './Posts/sagas'
+import { postsSaga, savePostSaga, saveCommentSaga } from './Posts/sagas'
 
 export default {
   reducers: {
@@ -16,6 +16,7 @@ export default {
       call(loginSaga),
       call(postsSaga),
       call(savePostSaga),
+      call(saveCommentSaga),
     ])
   },
 }

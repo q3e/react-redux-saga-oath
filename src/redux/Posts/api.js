@@ -2,21 +2,35 @@ import axios from 'axios'
 import moment from 'moment'
 
 
-let authString
+let authString, userId
 
 if(!(typeof window === 'undefined')){
   authString = `Bearer ${localStorage.getItem('access_token')}`
+  userId = localStorage.getItem('user_id')
 }
 
 export const posts = () => axios({
-  url: 'https://devapi.careerprepped.com/discussion/wall',
+  url: `https://devapi.careerprepped.com/discussion/wall`,
+  headers: {
+    Authorization: authString,
+  },
+  params: {
+    user: userId,
+    type:'all_activity',
+    sort: 'newest',
+    // comment: '5',
+  },
+})
+  .then(response => response.data)
+  .catch(e => Promise.reject(e))
+
+export const comments = wallPostId => axios({
+  url: `https://devapi.careerprepped.com/discussion/wall_comment?wallpost=${wallPostId}`,
   headers: {
     Authorization: authString,
   }})
   .then(response => response.data)
   .catch(e => Promise.reject(e))
-
-export default posts
 
 export const savePost = post => axios({
   url: 'https://devapi.careerprepped.com/discussion/wall',

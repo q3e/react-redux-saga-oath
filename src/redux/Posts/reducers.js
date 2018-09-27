@@ -1,26 +1,37 @@
 const initialState = {
-  isfetching: false,
+  isSaving: false,
+  isFetching: false,
   posts: [], // TODO: Normalize- map comments to posts
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    // FETCH POSTS
     case 'FETCH_POSTS':
       return {
         ...state,
-        isfetching: true,
-      }
-
-    case 'SAVE_POST':
-      return {
-        ...state,
-        isSaving: true,
+        isFetching: true,
       }
 
     case 'FETCH_POSTS_FAILED':
       return {
         ...state,
-        isfetching: false,
+        isFetching: false,
+      }
+
+
+    case 'FETCH_POSTS_SUCCEEDED':
+      return {
+        ...state,
+        isFetching: false,
+        posts: [ ...action.posts._embedded.wall ],
+      }
+
+    // SAVE POST
+    case 'SAVE_POST':
+      return {
+        ...state,
+        isSaving: true,
       }
 
     case 'SAVE_POST_FAILED':
@@ -29,19 +40,34 @@ export default (state = initialState, action) => {
         isSaving: false,
       }
 
-    case 'FETCH_POSTS_SUCCEEDED':
-      return {
-        ...state,
-        isfetching: false,
-        posts: action.posts._embedded.wall,
-      }
-
     case 'SAVE_POST_SUCCEEDED':
       return {
         ...state,
         isSaving: false,
       }
 
+    // FETCH COMMENTS
+    case 'FETCH_COMMENTS':
+      return {
+        ...state,
+        isFetching: true,
+      }
+
+    case 'FETCH_COMMENTS_FAILED':
+      return {
+        ...state,
+        isFetching: false,
+      }
+
+
+    case 'FETCH_COMMENTS_SUCCEEDED':
+      return {
+        ...state,
+        isFetching: false,
+        posts: [ ...action.posts._embedded.wall ],
+      }
+
+    // SAVE COMMENT
     case 'SAVE_COMMENT':
       return {
         ...state,

@@ -29,5 +29,17 @@ export const savePost = post => axios({
     permissions: 1, // not optional in API
   },
 })
-.then(() => posts()) // return all posts instead of saved text
-.catch(e => Promise.reject(e))
+  .then(() => posts()) // return all posts instead of saved text
+  .catch(e => Promise.reject(e))
+
+export const saveComment = (comment, wall) => axios({
+  url: 'https://devapi.careerprepped.com/discussion/wall_comment',
+  method: 'post',
+  headers: {
+    Authorization: authString,
+  },
+  data: { comment, wall },
+})
+  .then(response => response.data)
+  .catch(e => Promise.reject(e))
+

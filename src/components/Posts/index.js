@@ -2,10 +2,15 @@ import PropTypes from 'prop-types'
 import { Container } from 'reactstrap'
 import _isEmpty from 'lodash'
 
-import TextBox from 'src/components/TextBox'
+import WallPostBox from 'src/components/TextBox'
+import WallPost from 'src/containers/WallPost'
+
 import withAuth from 'src/lib/authHOC'
 
-import { postsActionCreator as posts } from 'src/redux/Posts/actions'
+import {
+  postsActionCreator as posts,
+  savePostActionCreator as savePost,
+} from 'src/redux/Posts/actions'
 
 class Posts extends React.Component {
   componentWillMount = () => {
@@ -17,11 +22,12 @@ class Posts extends React.Component {
       h1 Wall Posts
       if _isEmpty(this.props.posts)
         h3 You have no posts
+
       each item, index in this.props.posts
-        h1(key=index)= index
+        WallPost(key=index wallPost=item)
 
       .text-center
-        TextBox
+        WallPostBox(action=savePost)
   `
 }
 

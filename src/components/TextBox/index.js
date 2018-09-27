@@ -21,7 +21,11 @@ class TextBox extends React.Component {
         Button(color="primary" type="submit") Post
   `
 
-  handleSubmit = value => { this.props.dispatch(savePost(value.newPost)) }
+  handleSubmit = value => {
+    if(this.props.wallId){ // needs to not care
+      this.props.dispatch(this.props.action(value.newPost, this.props.wallId))
+    } else this.props.dispatch(this.props.action(value.newPost))
+  }
 }
 
 export default reduxForm({

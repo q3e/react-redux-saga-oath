@@ -2,16 +2,14 @@ import PropTypes from 'prop-types'
 import { Container } from 'reactstrap'
 import _isEmpty from 'lodash'
 
+import TextBox from 'src/components/TextBox'
 import withAuth from 'src/lib/authHOC'
 
 import { postsActionCreator as posts } from 'src/redux/Posts/actions'
 
 class Posts extends React.Component {
   componentWillMount = () => {
-    if(!(typeof window === 'undefined')){
-      const accessToken = localStorage.getItem('access_token')
-      this.props.dispatch(posts(accessToken))
-    }
+    this.props.dispatch(posts())
   }
 
   render = () => pug`
@@ -21,6 +19,9 @@ class Posts extends React.Component {
         h3 You have no posts
       each item, index in this.props.posts
         h1(key=index)= index
+
+      .text-center
+        TextBox
   `
 }
 

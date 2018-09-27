@@ -7,7 +7,7 @@
     "dev": "next",
     "build": "next build",
     "test": "NODE_ENV=test jest",
-    "start": "next start"
+    "start": "next start -p 8000"
   },
   "keywords": [],
   "author": "",

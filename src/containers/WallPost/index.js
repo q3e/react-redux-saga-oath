@@ -6,8 +6,8 @@ const WallPostContainer = props => pug`
   WallPost(...props)
 `
 
-// const mapStateToProps = state => ({
-//   comments: state.posts.posts
-// })
+const mapStateToProps = state => ({
+  wallPost: state.posts.posts
+})
 
 export default connect(null)(WallPostContainer)

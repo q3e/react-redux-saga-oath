@@ -9,21 +9,24 @@ class TextBox extends React.Component {
       Form(onSubmit=this.props.handleSubmit(this.handleSubmit) error=this.props.error)
         FormGroup
           div
-            Label Post Text
+            Label text input box
 
           div
             Field(
-              name="newPost"
+              name=this.props.label
               component="textarea"
               type="text"
-              placeholder="New Post"
+              placeholder=this.props.label
             )
-        Button(color="primary" type="submit") Post
+        Button(
+          color="primary"
+          type="submit"
+        )= this.props.btnText
   `
 
   handleSubmit = value => {
-    if(this.props.wallId){ // needs to not care
-      this.props.dispatch(this.props.action(value.newPost, this.props.wallId))
+    if(this.props.wallPostId){ // needs to not care
+      this.props.dispatch(this.props.action(value.newPost, this.props.wallPostId))
     } else this.props.dispatch(this.props.action(value.newPost))
   }
 }

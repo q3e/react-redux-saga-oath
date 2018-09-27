@@ -4,7 +4,7 @@ import loginReducer from './Login/reducers'
 import loginSaga from './Login/sagas'
 
 import postsReducer from './Posts/reducers'
-import postsSaga from './Posts/sagas'
+import { postsSaga, savePostSaga } from './Posts/sagas'
 
 export default {
   reducers: {
@@ -15,6 +15,7 @@ export default {
     yield all([
       call(loginSaga),
       call(postsSaga),
+      call(savePostSaga),
     ])
   },
 }

@@ -12,19 +12,18 @@ class WallPost extends React.Component {
     Container.my-5
       Card.border.border-dark-rounded
         CardText Post |
-            h3= this.props.wallPost.post
+          h3= this.props.wallPost.post
 
         Row
           .col-md-4.offset-md-8
-            if(this.props.wallPost.commentCount !==0 )
-              each comment, index in this.props.wallPost.comments
-                Card.border.border-primary-rounded(key=index)
-                  CardText= comment.comment
+            if(this.props.wallPost.post.comment_count)
+              each comment, index in ['props.wallPost.comments,', 1]
+                Card(key=index)
+                  CardText comment
 
             CommentBox(
-              name="comment"
               action=comment
-              wallPostId=this.props.wallPost.id
+              wallpostId=this.props.wallPost.id
               label="add new comment"
               btnText="Add Comment"
               form=this.getUniqueFormName()

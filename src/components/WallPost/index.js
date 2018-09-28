@@ -7,11 +7,12 @@ import {
   commentsActionCreator as comments,
 } from 'src/redux/Posts/actions'
 
+class WallPost extends React.Component {
   render = () => pug`
     Container.my-5
       Card.border.border-dark-rounded
         CardText Post |
-          h3= this.props.wallPost.post
+            h3= this.props.wallPost.post
 
         Row
           .col-md-4.offset-md-8

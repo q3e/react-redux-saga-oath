@@ -1,7 +1,9 @@
 const initialState = {
   isSaving: false,
   isFetching: false,
-  posts: [], // TODO: Normalize- map comments to posts
+  posts: {
+    entities: [],
+  },
 }
 
 export default (state = initialState, action) => {
@@ -21,10 +23,14 @@ export default (state = initialState, action) => {
 
 
     case 'FETCH_POSTS_SUCCEEDED':
+      console.log(action)
       return {
         ...state,
         isFetching: false,
-        posts: [ ...action.posts._embedded.wall ],
+        posts: {
+          ...state.posts,
+          ...action.posts,
+        }
       }
 
     // SAVE POST
@@ -64,7 +70,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        posts: [ ...action.posts._embedded.wall ],
+        // posts: {
+        //   ...state.posts
+        //   entities: ...
+        // },
       }
 
     // SAVE COMMENT
@@ -84,7 +93,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isSaving: false,
-        posts: action.posts._embedded.wall_comment,
       }
 
   default:

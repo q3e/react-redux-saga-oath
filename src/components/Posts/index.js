@@ -3,12 +3,12 @@ import { Container } from 'reactstrap'
 import _isEmpty from 'lodash'
 
 import WallPostBox from 'src/components/TextBox'
-import WallPost from 'src/containers/WallPost'
+import WallPost from 'src/components/WallPost'
 
 import { savePostActionCreator as savePost } from 'src/redux/Posts/actions'
 
 
-const Posts = props =>pug`
+const Posts = props => pug`
   Container
     h1 Wall Posts
 
@@ -16,20 +16,22 @@ const Posts = props =>pug`
       if props.posts.isFetching
         h3 Loading posts...
 
-      each item, index in props.posts
+      each post, index in props.posts
         .text-center(key=index)
-          WallPost(wallPost=item)
+          WallPost(wallPost=post)
+
       WallPostBox(
+        name="wallPost"
         action=savePost
         btnText="Add WallPost"
-        label="add new comment"
+        label="add new Post"
         form="PostForm"
       )
 `
 
 Posts.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  posts: PropTypes.array.isRequired,
 }
 
 export default Posts

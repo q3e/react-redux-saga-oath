@@ -31,8 +31,8 @@ class PostsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts.posts,
-  isFetching: state.posts.isFetching,
+  posts: state.posts.posts.entities,
+  isFetching: state.posts.posts.isFetching,
 })
 
 export default connect(mapStateToProps)(PostsContainer)

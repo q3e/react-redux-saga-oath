@@ -4,4 +4,4 @@ export const savePostActionCreator = post => ({ type: 'SAVE_POST', post })
 
 export const commentsActionCreator = (wallPostId) => ({ type: 'FETCH_COMMENTS', wallPostId })
 
-export const commentActionCreator = (value, wallPostId) => ({ type: 'SAVE_COMMENT', value, wallPostId })
+export const commentActionCreator = (comment, wallPostId) => ({ type: 'SAVE_COMMENT', comment, wallPostId })

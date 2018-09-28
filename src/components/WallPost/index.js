@@ -13,18 +13,20 @@ class WallPost extends React.Component {
   render = () => pug`
     Container.my-5
       Card.border.border-dark-rounded
-        CardText= this.props.wallPost.post
+        CardText Post |
+          =this.props.wallPost.post
 
         Row
           .col-md-4.offset-md-8
-            if(this.props.wallPost.post.comment_count)
-              each comment, index in ['props.wallPost.comments,', 1]
+            if(this.props.wallPost.commentCount)
+              each comment, index in this.props.wallPost.comments
                 Card(key=index)
-                  CardText comment
+                  CardText= comment
 
             CommentBox(
+              name="comment"
               action=comment
-              wallpostId=this.props.wallPost.id
+              wallPostId=this.props.wallPost.id
               label="add new comment"
               btnText="Add Comment"
               form=this.getUniqueFormName()

@@ -19,7 +19,7 @@ function* posts(action) {
 function* savePost(action) {
   try {
      const posts = yield call(savePostAPI, action.post)
-     yield put({type: "SAVE_POST_SUCCEEDED", posts})
+     yield put({type: "SAVE_POST_SUCCEEDED"})
      yield put({type: "FETCH_POSTS"}) // fetch posts again because save API does not return posts
   } catch (e) {
      yield put({type: "SAVE_POST_FAILED", message: e.message})
@@ -28,7 +28,7 @@ function* savePost(action) {
 
 function* saveComment(action) {
   try {
-     const posts = yield call(saveCommetAPI, action.wallPostId, action.comment)
+     const posts = yield call(saveCommentAPI, { comment: action.comment, wall: action.wallPostId })
      yield put({type: "SAVE_COMMENT_SUCCEEDED" })
      yield put({type: "FETCH_POSTS"}) // fetch posts again because save API does not return posts
   } catch (e) {

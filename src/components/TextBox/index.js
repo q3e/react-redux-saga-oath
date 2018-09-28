@@ -9,11 +9,11 @@ class TextBox extends React.Component {
       Form(onSubmit=this.props.handleSubmit(this.handleSubmit) error=this.props.error)
         FormGroup
           div
-            Label text input box
+            Label: small text input box
 
           div
             Field(
-              name=this.props.label
+              name=this.props.name
               component="textarea"
               type="text"
               placeholder=this.props.label
@@ -25,12 +25,10 @@ class TextBox extends React.Component {
   `
 
   handleSubmit = value => {
-    if(this.props.wallPostId){ // needs to not care
-      this.props.dispatch(this.props.action(value.newPost, this.props.wallPostId))
-    } else this.props.dispatch(this.props.action(value.newPost))
+    if(this.props.name === 'comment'){ // needs to not care
+      this.props.dispatch(this.props.action(value[this.props.name], this.props.wallPostId))
+    } else this.props.dispatch(this.props.action(value[this.props.name]))
   }
 }
 
-export default reduxForm({
-  form: 'newPost',
-})(TextBox)
+export default reduxForm()(TextBox)

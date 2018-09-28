@@ -1,6 +1,7 @@
 import axios from 'axios'
 import moment from 'moment'
 
+import normalize from 'src/lib/normalize'
 
 let authString, userId
 
@@ -21,7 +22,7 @@ export const posts = () => axios({
     // comment: '5',
   },
 })
-  .then(response => response.data)
+  .then(response => normalize(response.data._embedded.wall))
   .catch(e => Promise.reject(e))
 
 export const comments = wallPostId => axios({
@@ -46,7 +47,7 @@ export const savePost = post => axios({
   .then(() => posts()) // return all posts instead of saved text
   .catch(e => Promise.reject(e))
 
-export const saveComment = (comment, wall) => axios({
+export const saveComment = ({ comment, wall }) => axios({
   url: 'https://devapi.careerprepped.com/discussion/wall_comment',
   method: 'post',
   headers: {

@@ -3,7 +3,6 @@ import _pick from 'lodash/pick'
 
 import loginAPI from './api'
 
-// main worker saga - fired on LOGIN_REQUESTED action
 function* login(action) {
    try {
       const session = yield call(loginAPI, _pick(action, ['email', 'password']))
@@ -14,7 +13,6 @@ function* login(action) {
    }
 }
 
-// 'takeLatest' does not allow concurrent login requests
 function* loginSaga() {
   yield takeLatest('LOGIN_REQUESTED', login)
 }

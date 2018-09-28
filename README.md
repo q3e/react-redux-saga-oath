@@ -3,6 +3,8 @@ React email Oauth app using redux-forms and redux-sagas
 
 I used [pug templating engine](https://pugjs.org) instead of JSX.
 
+Demo https://react-redux-saga-oath-cknaepzuqq.now.sh/
+
 # Setup
 ### clone repo
 `git clone git@github.com:fatahn/react-redux-saga-oath.git`

@@ -2,10 +2,7 @@ import { Container, Card, CardText, Row } from 'reactstrap'
 
 import CommentBox from 'src/components/TextBox'
 
-import {
-  commentActionCreator as comment,
-  commentsActionCreator as comments,
-} from 'src/redux/Posts/actions'
+import { commentActionCreator as comment } from 'src/redux/Posts/actions'
 
 class WallPost extends React.Component {
   render = () => pug`

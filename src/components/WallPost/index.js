@@ -11,7 +11,8 @@ class WallPost extends React.Component {
   render = () => pug`
     Container.my-5
       Card.border.border-dark-rounded
-        CardText= this.props.wallPost.post
+        CardText Post |
+          h3= this.props.wallPost.post
 
         Row
           .col-md-4.offset-md-8

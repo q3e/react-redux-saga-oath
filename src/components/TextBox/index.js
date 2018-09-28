@@ -7,17 +7,13 @@ class TextBox extends React.Component {
   render = () => pug`
     Container
       Form(onSubmit=this.props.handleSubmit(this.handleSubmit) error=this.props.error)
-        FormGroup
-          div
-            Label: small text input box
-
-          div
-            Field(
-              name=this.props.name
-              component="textarea"
-              type="text"
-              placeholder=this.props.label
-            )
+        div
+          Field(
+            name=this.props.name
+            component="textarea"
+            type="text"
+            placeholder=this.props.label
+          )
         Button(
           color="primary"
           type="submit"

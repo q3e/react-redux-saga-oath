@@ -6,22 +6,19 @@ import {
   commentActionCreator as comment,
   commentsActionCreator as comments,
 } from 'src/redux/Posts/actions'
-class WallPost extends React.Component {
-  componentWillMount = () => {
-    // this.props.dispatch(comments(wallPostId))
-  }
+
   render = () => pug`
     Container.my-5
       Card.border.border-dark-rounded
         CardText Post |
-          =this.props.wallPost.post
+          h3= this.props.wallPost.post
 
         Row
           .col-md-4.offset-md-8
-            if(this.props.wallPost.commentCount)
+            if(this.props.wallPost.commentCount !==0 )
               each comment, index in this.props.wallPost.comments
-                Card(key=index)
-                  CardText= comment
+                Card.border.border-primary-rounded(key=index)
+                  CardText= comment.comment
 
             CommentBox(
               name="comment"

@@ -19,7 +19,7 @@ export const posts = () => axios({
     user: userId,
     type:'all_activity',
     sort: 'newest',
-    // comment: '5',
+    comment: 1,
   },
 })
   .then(response => normalize(response.data._embedded.wall))
